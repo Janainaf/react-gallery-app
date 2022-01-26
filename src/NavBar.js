@@ -5,20 +5,20 @@ function NavbBar(props) {
     <nav className="main-nav">
       <ul>
         <li>
-          <Link to="/cats" onClick={() => props.changeName("cats")}>
+          <Link to="/sunsets" onClick={() => props.changeName("sunsets")}>
             {" "}
-            Cats{" "}
+            Sunsets{" "}
           </Link>
         </li>
         <li>
-          <Link to="/dogs" onClick={() => props.changeName("dogs")}>
-            Dogs{" "}
+          <Link to="/beaches" onClick={() => props.changeName("beaches")}>
+            Beaches{" "}
           </Link>
         </li>
         <li>
-          <Link to="/computers" onClick={() => props.changeName("computers")}>
+          <Link to="/forests" onClick={() => props.changeName("forests")}>
             {" "}
-            Computers{" "}
+            Forests{" "}
           </Link>
         </li>
       </ul>
