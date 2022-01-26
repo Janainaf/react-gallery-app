@@ -1,18 +1,25 @@
-import { Link } from "react-router-dom";
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
-function NavbBar() {
+function NavbBar(props) {
   return (
-    <nav class="main-nav">
+    <nav className="main-nav">
       <ul>
         <li>
-          <a href="#">Cats</a>
+          <Link to="/cats" onClick={() => props.changeName("cats")}>
+            {" "}
+            Cats{" "}
+          </Link>
         </li>
         <li>
-          <a href="#">Dogs</a>
+          <Link to="/dogs" onClick={() => props.changeName("dogs")}>
+            Dogs{" "}
+          </Link>
         </li>
         <li>
-          <a href="#">Computers</a>
+          <Link to="/computers" onClick={() => props.changeName("computers")}>
+            {" "}
+            Computers{" "}
+          </Link>
         </li>
       </ul>
     </nav>
