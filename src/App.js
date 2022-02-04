@@ -27,33 +27,33 @@ function App() {
       .finally(() => setIsLoading(false));
   }, [query]);
 
-  // useEffect(() => {
-  //   axios(
-  //     `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=sunsets&per_page=15&format=json&nojsoncallback=1&`
-  //   )
-  //     .then((response) => setSunsets(response.data.photos.photo))
-  //     .catch((error) => console.log("Error fetching and parsing data", error))
-  //     .finally(() => setIsLoading(false));
-  // }, [sunsets]);
+  useEffect(() => {
+    axios(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=sunsets&per_page=15&format=json&nojsoncallback=1&`
+    )
+      .then((response) => setSunsets(response.data.photos.photo))
+      .catch((error) => console.log("Error fetching and parsing data", error))
+      .finally(() => setIsLoading(false));
+  }, [sunsets]);
 
-  // useEffect(() => {
-  //   axios(
-  //     `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=beaches&per_page=15&format=json&nojsoncallback=1&`
-  //   )
-  //     .then((response) => setBeaches(response.data.photos.photo))
-  //     .catch((error) => console.log("Error fetching and parsing data", error))
-  //     .finally(() => setIsLoading(false));
-  // }, [beaches]);
+  useEffect(() => {
+    axios(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=beaches&per_page=15&format=json&nojsoncallback=1&`
+    )
+      .then((response) => setBeaches(response.data.photos.photo))
+      .catch((error) => console.log("Error fetching and parsing data", error))
+      .finally(() => setIsLoading(false));
+  }, [beaches]);
 
-  // useEffect(() => {
-  //   axios(
-  //     `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=forests&per_page=15&format=json&nojsoncallback=1&`
-  //   )
-  //     .then((response) => setForests(response.data.photos.photo))
-  //     .catch((error) => console.log("Error fetching and parsing data", error))
-  //     .finally(() => setIsLoading(false));
-  // }, [forests]);
-  console.log(query);
+  useEffect(() => {
+    axios(
+      `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${api}&tags=forests&per_page=15&format=json&nojsoncallback=1&`
+    )
+      .then((response) => setForests(response.data.photos.photo))
+      .catch((error) => console.log("Error fetching and parsing data", error))
+      .finally(() => setIsLoading(false));
+  }, [forests]);
+
   return (
     <BrowserRouter>
       <div>
@@ -61,12 +61,12 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/:query" element={<Photo photos={data} />} />
-          {/* <Route path="/sunsets" element={<Photo photos={sunsets} />} />
+          <Route path="/sunsets" element={<Photo photos={sunsets} />} />
           <Route path="/beaches" element={<Photo photos={beaches} />} />
-          <Route path="/forests" element={<Photo photos={forests} />} /> */}
+          <Route path="/forests" element={<Photo photos={forests} />} />
         </Routes>
       </div>
-      {/* {isLoading ? <p>Loading...</p> : <Photo data={data} />} */}
+      {isLoading ? <p>Loading...</p> : <Photo data={data} />}
     </BrowserRouter>
   );
 }
