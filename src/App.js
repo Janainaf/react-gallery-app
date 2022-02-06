@@ -10,7 +10,7 @@ const api = apiKey;
 
 function App() {
   const [data, setData] = useState([]);
-  const [query, setQuery] = useState("cats");
+  const [query, setQuery] = useState("galaxies");
   const [isLoading, setIsLoading] = useState(true);
   const [sunsets, setSunsets] = useState([]);
   const [beaches, setBeaches] = useState([]);
@@ -34,7 +34,7 @@ function App() {
       .then((response) => setSunsets(response.data.photos.photo))
       .catch((error) => console.log("Error fetching and parsing data", error))
       .finally(() => setIsLoading(false));
-  }, [sunsets]);
+  }, []);
 
   useEffect(() => {
     axios(
@@ -43,7 +43,7 @@ function App() {
       .then((response) => setBeaches(response.data.photos.photo))
       .catch((error) => console.log("Error fetching and parsing data", error))
       .finally(() => setIsLoading(false));
-  }, [beaches]);
+  }, []);
 
   useEffect(() => {
     axios(
@@ -52,7 +52,7 @@ function App() {
       .then((response) => setForests(response.data.photos.photo))
       .catch((error) => console.log("Error fetching and parsing data", error))
       .finally(() => setIsLoading(false));
-  }, [forests]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -60,6 +60,7 @@ function App() {
         <SearchForm onSearch={changeName} />
         <NavBar />
         <Routes>
+          <Route path="/" element={<Photo photos={data} />} />
           <Route path="/:query" element={<Photo photos={data} />} />
           <Route path="/sunsets" element={<Photo photos={sunsets} />} />
           <Route path="/beaches" element={<Photo photos={beaches} />} />
