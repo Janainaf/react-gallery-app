@@ -1,16 +1,16 @@
-import apiKey from "./config.js";
-import Photo from "./Photo";
+import apiKey from "../config.js";
 import SearchForm from "./SearchForm";
 import NavBar from "./NavBar";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, withRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
+import PhotoContainer from "./PhotoContainer.js";
 
 const api = apiKey;
 
 function App() {
   const [data, setData] = useState([]);
-  const [query, setQuery] = useState("galaxies");
+  const [query, setQuery] = useState("galaxy");
   const [isLoading, setIsLoading] = useState(true);
   const [sunsets, setSunsets] = useState([]);
   const [beaches, setBeaches] = useState([]);
@@ -55,20 +55,30 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div>
-        <SearchForm onSearch={changeName} />
-        <NavBar />
+    <div>
+      <SearchForm onSearch={changeName} />
+      <NavBar />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
         <Routes>
-          <Route path="/" element={<Photo photos={data} />} />
-          <Route path="/:query" element={<Photo photos={data} />} />
-          <Route path="/sunsets" element={<Photo photos={sunsets} />} />
-          <Route path="/beaches" element={<Photo photos={beaches} />} />
-          <Route path="/forests" element={<Photo photos={forests} />} />
+          <Route path="/" element={<PhotoContainer photos={data} />} />
+          <Route path="/:tag" element={<PhotoContainer photos={data} />} />
+          <Route
+            path="/sunsets"
+            element={<PhotoContainer photos={sunsets} />}
+          />
+          <Route
+            path="/beaches"
+            element={<PhotoContainer photos={beaches} />}
+          />
+          <Route
+            path="/forests"
+            element={<PhotoContainer photos={forests} />}
+          />
         </Routes>
-      </div>
-      {isLoading ? <p>Loading...</p> : <Photo data={data} />}
-    </BrowserRouter>
+      )}
+    </div>
   );
 }
 

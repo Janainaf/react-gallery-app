@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SearchForm(props) {
   const [searchText, setSearchText] = useState("");
   const onSearchChange = (e) => setSearchText(e.target.value);
   let navigate = useNavigate();
-  const { query } = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
