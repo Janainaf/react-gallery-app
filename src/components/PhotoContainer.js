@@ -5,19 +5,27 @@ import { useParams, useLocation } from "react-router-dom";
 function PhotoContainer(props) {
   const params = useParams();
   const location = useLocation();
-
+  const fetchedphotos = props.photos;
   return (
     <>
       <div className="photo-container">
-        {props.photos.length > 0 && params ? (
+        {fetchedphotos.length && params ? (
           <>
             <h2>Results {params.tag || location.pathname.replace(/\//, "")}</h2>
-            <Photo photos={props.photos} />
+            <ul>
+              {fetchedphotos &&
+                Array.isArray(fetchedphotos) &&
+                props.photos.map((object) => (
+                  <Photo
+                    url={`https://live.staticflickr.com/${object.server}/${object.id}_${object.secret}.jpg`}
+                    key={object.id}
+                  />
+                ))}
+            </ul>
           </>
         ) : (
           <NotFound />
         )}
-        <Photo photos={props.photos} />
         {/* {console.log(location)} */}
       </div>
     </>
